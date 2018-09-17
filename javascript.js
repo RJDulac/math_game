@@ -25,6 +25,9 @@ timer = 60;
 
 
 function startGame() {
+    timer = 60;
+    document.getElementById("start-reset").style="pointer-events:none";
+
     document.getElementById("question").innerText = "7x8";
     document.getElementById("box1").innerText = 46;
     document.getElementById("box2").innerText = 56;
@@ -58,15 +61,16 @@ function timeCounter() {
 
                endTime();
 
-            }, 100 * i);
+            }, 1000 * i);
         })(i);
     }
-
 }
 
 function endTime() {
     if (timer === 0) {
         document.getElementById("game-over").style="display: block";
+        document.getElementById("start-reset").style="pointer-events:auto";
+
         console.log("hit 0");
     } 
 }
