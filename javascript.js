@@ -68,12 +68,34 @@ function startGame() {
 
     // document.getElementById("question").innerText = questionroblem();
     //need to feed randomized numbers with questionMath
-    randomBox(questionMath());
-    function randomBox(x) {
-        document.getElementById("box1").innerText = x;
-        document.getElementById("box2").innerText = x;
-        document.getElementById("box3").innerText = x;
-        document.getElementById("box4").innerText = x;
+    //Fisher-Yates shuffle
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+      
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+      
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+      
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+      
+        return array;
+      }
+      
+    randomBox();
+    function randomBox() {
+        arrayRandomizer = [questionMath(),randomNum() * randomNum(),randomNum() *randomNum() ,randomNum() * randomNum()]
+        shuffle(arrayRandomizer);
+        document.getElementById("box1").innerText = arrayRandomizer[0];
+        document.getElementById("box2").innerText = arrayRandomizer[1];
+        document.getElementById("box3").innerText = arrayRandomizer[2];
+        document.getElementById("box4").innerText = arrayRandomizer[3];
     }
 
 
