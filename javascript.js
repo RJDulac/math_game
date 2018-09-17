@@ -22,14 +22,36 @@
 
 
 timer = 60;
+disableAnswers();
 
+
+function enableAnswers() {
+    document.getElementById("box1").style = "pointer-events:auto";
+    document.getElementById("box2").style = "pointer-events:auto";
+    document.getElementById("box3").style = "pointer-events:auto";
+    document.getElementById("box4").style = "pointer-events:auto";
+}
+
+function disableAnswers() {
+    document.getElementById("box1").style = "pointer-events:none";
+    document.getElementById("box2").style = "pointer-events:none";
+    document.getElementById("box3").style = "pointer-events:none";
+    document.getElementById("box4").style = "pointer-events:none";
+}
 
 function startGame() {
     timer = 60;
-    document.getElementById("game-over").style="display: none";
-    document.getElementById("start-reset").style="pointer-events:none";
+    document.getElementById("game-over").style = "display: none";
 
-    document.getElementById("start-reset").innerText="Playing...";
+    document.getElementById("start-reset").style = "pointer-events:none";
+    //enable while playing
+    enableAnswers();
+
+
+
+
+
+    document.getElementById("start-reset").innerText = "Playing...";
 
     document.getElementById("question").innerText = "7x8";
     document.getElementById("box1").innerText = 46;
@@ -50,7 +72,7 @@ function startGame() {
     // })
 
 
-timeCounter();
+    timeCounter();
 
 }
 
@@ -58,9 +80,9 @@ function timeCounter() {
     for (i = 0; i <= 60; i++) {
         (function (i) {
             setTimeout(function () {
-                
 
-               
+
+
                 endTime();
                 startTime();
             }, 100 * i);
@@ -71,15 +93,16 @@ function timeCounter() {
 
 function endTime() {
     if (timer === 0) {
-        document.getElementById("game-over").style="display: block";
-        document.getElementById("start-reset").style="pointer-events:auto";
-        document.getElementById("start-reset").innerText="Reset Game";
+        document.getElementById("game-over").style = "display: block";
+        document.getElementById("start-reset").style = "pointer-events:auto";
+        document.getElementById("start-reset").innerText = "Reset Game";
         console.log("hit 0");
-    } 
+        disableAnswers();
+    }
 }
 
 function startTime() {
     document.getElementById("time-remaining-value").innerText = timer;
     console.log(i);
-    timer-- 
+    timer--
 }
