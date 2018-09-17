@@ -29,7 +29,7 @@ disableAnswers();
 function questionMath() {
     var randomNum1 = randomNum();
     var randomNum2 = randomNum();
-    mathStr = randomNum1 + ' + ' + randomNum2;
+    mathStr = randomNum1 + ' X ' + randomNum2;
     document.getElementById("question").innerText = mathStr;
     
     
