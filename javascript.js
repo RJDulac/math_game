@@ -23,19 +23,11 @@
 
 timer = 60;
 disableAnswers();
+score = 0;
 
-document.getElementById("score-value").innerText = 60;
-
-function questionMath() {
-    var randomNum1 = randomNum();
-    var randomNum2 = randomNum();
-    mathStr = randomNum1 + ' X ' + randomNum2;
-    document.getElementById("question").innerText = mathStr;
+document.getElementById("score-value").innerText = score;
 
 
-
-    return randomNum1 * randomNum2;
-}
 
 function enableAnswers() {
     document.getElementById("box1").style = "pointer-events:auto";
@@ -68,37 +60,10 @@ function startGame() {
 
     // document.getElementById("question").innerText = questionroblem();
     //need to feed randomized numbers with questionMath
-    //Fisher-Yates shuffle
-    function shuffle(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
 
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-
-            // Pick a remaining element...
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-
-        return array;
-    }
-    var correctMatch = questionMath();
+    
     randomBox();
-    function randomBox() {
-        arrayRandomizer = [correctMatch, randomNum() * randomNum(), randomNum() * randomNum(), randomNum() * randomNum()]
-        shuffle(arrayRandomizer);
-        document.getElementById("box1").innerText = arrayRandomizer[0];
-        document.getElementById("box2").innerText = arrayRandomizer[1];
-        document.getElementById("box3").innerText = arrayRandomizer[2];
-        document.getElementById("box4").innerText = arrayRandomizer[3];
 
-        // return questionMath();
-    }
 
 
     document.getElementById("time-remaining").style = "display: block";
@@ -123,32 +88,41 @@ function startGame() {
     //     return goDown();
     // }
     console.log(correctMatch)
-    return this.test = correctMatch;
+    // return this.test = correctMatch;
 
 }
 function correctCheck1() {
-    if (document.getElementById("box1").innerText == test) {
+    if (document.getElementById("box1").innerText == correctMatch) {
         console.log("correct");
-        document.getElementById("score-value").innerText = 60 + 1;
+        score++
+        //update dom score
+        document.getElementById("score-value").innerText = score;
+        randomBox();
     }
 
 }
 function correctCheck2() {
-    if (document.getElementById("box2").innerText == test) {
+    if (document.getElementById("box2").innerText == correctMatch) {
             console.log("correct");
-            document.getElementById("score-value").innerText = 60 + 1;
+            score++;
+            document.getElementById("score-value").innerText = score;
+            randomBox();
         }
 }
 function correctCheck3() {
-    if (document.getElementById("box3").innerText == test) {
+    if (document.getElementById("box3").innerText == correctMatch) {
             console.log("correct");
-            document.getElementById("score-value").innerText = 60 +1;
+            score++;
+            document.getElementById("score-value").innerText = score;
+            randomBox();
         }
 }
 function correctCheck4() {
-    if (document.getElementById("box4").innerText == test) {
+    if (document.getElementById("box4").innerText == correctMatch) {
             console.log("correct");
-            document.getElementById("score-value").innerText = 60 + 1;
+            score++;
+            document.getElementById("score-value").innerText = score;
+            randomBox();
         }
 }
 function timeCounter() {
@@ -181,6 +155,52 @@ function startTime() {
     // console.log(i);
     timer--
 }
+// var correctMatch = questionMath();
+
+function randomBox() {
+
+    function questionMath() {
+        var randomNum1 = randomNum();
+        var randomNum2 = randomNum();
+        mathStr = randomNum1 + ' X ' + randomNum2;
+        document.getElementById("question").innerText = mathStr;
+    
+    
+    
+        return randomNum1 * randomNum2;
+    }
+    this.correctMatch = questionMath();
+    arrayRandomizer = [correctMatch, randomNum() * randomNum(), randomNum() * randomNum(), randomNum() * randomNum()]
+    shuffle(arrayRandomizer);
+    document.getElementById("box1").innerText = arrayRandomizer[0];
+    document.getElementById("box2").innerText = arrayRandomizer[1];
+    document.getElementById("box3").innerText = arrayRandomizer[2];
+    document.getElementById("box4").innerText = arrayRandomizer[3];
+
+    return correctMatch;
+}
+
+    //Fisher-Yates shuffle
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
+
+
 
 
 // function randomNum() {
@@ -199,3 +219,4 @@ function randomNum() {
 
     return Math.floor(Math.random() * 10) + 1;
 }
+
