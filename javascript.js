@@ -55,14 +55,14 @@ function timeCounter() {
     for (i = 0; i <= 60; i++) {
         (function (i) {
             setTimeout(function () {
-                document.getElementById("time-remaining-value").innerText = timer;
-                console.log(i);
-                timer--
+                
 
-               endTime();
-
-            }, 1000 * i);
+               
+                endTime();
+                startTime();
+            }, 100 * i);
         })(i);
+
     }
 }
 
@@ -75,3 +75,8 @@ function endTime() {
     } 
 }
 
+function startTime() {
+    document.getElementById("time-remaining-value").innerText = timer;
+    console.log(i);
+    timer-- 
+}
