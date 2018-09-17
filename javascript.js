@@ -24,16 +24,16 @@
 timer = 60;
 disableAnswers();
 
-
+document.getElementById("score-value").innerText = 60;
 
 function questionMath() {
     var randomNum1 = randomNum();
     var randomNum2 = randomNum();
     mathStr = randomNum1 + ' X ' + randomNum2;
     document.getElementById("question").innerText = mathStr;
-    
-    
-    
+
+
+
     return randomNum1 * randomNum2;
 }
 
@@ -52,7 +52,7 @@ function disableAnswers() {
 }
 
 function startGame() {
-    questionMath();
+
     timer = 60;
     document.getElementById("game-over").style = "display: none";
 
@@ -71,31 +71,33 @@ function startGame() {
     //Fisher-Yates shuffle
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
-      
+
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
-      
-          // Pick a remaining element...
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
-      
-          // And swap it with the current element.
-          temporaryValue = array[currentIndex];
-          array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
         }
-      
+
         return array;
-      }
-      
+    }
+    var correctMatch = questionMath();
     randomBox();
     function randomBox() {
-        arrayRandomizer = [questionMath(),randomNum() * randomNum(),randomNum() *randomNum() ,randomNum() * randomNum()]
+        arrayRandomizer = [correctMatch, randomNum() * randomNum(), randomNum() * randomNum(), randomNum() * randomNum()]
         shuffle(arrayRandomizer);
         document.getElementById("box1").innerText = arrayRandomizer[0];
         document.getElementById("box2").innerText = arrayRandomizer[1];
         document.getElementById("box3").innerText = arrayRandomizer[2];
         document.getElementById("box4").innerText = arrayRandomizer[3];
+
+        // return questionMath();
     }
 
 
@@ -113,9 +115,42 @@ function startGame() {
 
 
     timeCounter();
+    //  function goDown() {
+    //      questionMath() = test;
+    //      return test;
+    //  }
+    //  function goDown2() {
+    //     return goDown();
+    // }
+    console.log(correctMatch)
+    return this.test = correctMatch;
 
 }
+function correctCheck1() {
+    if (document.getElementById("box1").innerText == test) {
+        console.log("correct");
+        document.getElementById("score-value").innerText = 60 + 1;
+    }
 
+}
+function correctCheck2() {
+    if (document.getElementById("box2").innerText == test) {
+            console.log("correct");
+            document.getElementById("score-value").innerText = 60 + 1;
+        }
+}
+function correctCheck3() {
+    if (document.getElementById("box3").innerText == test) {
+            console.log("correct");
+            document.getElementById("score-value").innerText = 60 +1;
+        }
+}
+function correctCheck4() {
+    if (document.getElementById("box4").innerText == test) {
+            console.log("correct");
+            document.getElementById("score-value").innerText = 60 + 1;
+        }
+}
 function timeCounter() {
     for (i = 0; i <= 60; i++) {
         (function (i) {
@@ -125,7 +160,7 @@ function timeCounter() {
 
                 endTime();
                 startTime();
-            }, 100 * i);
+            }, 1000 * i);
         })(i);
 
     }
@@ -143,7 +178,7 @@ function endTime() {
 
 function startTime() {
     document.getElementById("time-remaining-value").innerText = timer;
-    console.log(i);
+    // console.log(i);
     timer--
 }
 
@@ -160,7 +195,7 @@ function startTime() {
 // }
 
 function randomNum() {
-    
 
-   return Math.floor(Math.random() * 10) + 1;
+
+    return Math.floor(Math.random() * 10) + 1;
 }
