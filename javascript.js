@@ -26,7 +26,10 @@ timer = 60;
 
 function startGame() {
     timer = 60;
+    document.getElementById("game-over").style="display: none";
     document.getElementById("start-reset").style="pointer-events:none";
+
+    document.getElementById("start-reset").innerText="Playing...";
 
     document.getElementById("question").innerText = "7x8";
     document.getElementById("box1").innerText = 46;
@@ -70,7 +73,7 @@ function endTime() {
     if (timer === 0) {
         document.getElementById("game-over").style="display: block";
         document.getElementById("start-reset").style="pointer-events:auto";
-
+        document.getElementById("start-reset").innerText="Reset Game";
         console.log("hit 0");
     } 
 }
