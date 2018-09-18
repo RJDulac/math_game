@@ -21,13 +21,14 @@
 //show try again box for 1 second
 
 
-timer = 60;
+var timer = 60;
+var score = 0;
+
+
 disableAnswers();
-score = 0;
 
+//put this in a function to reuse called updateScore
 document.getElementById("score-value").innerText = score;
-
-
 
 function enableAnswers() {
     document.getElementById("box1").style = "pointer-events:auto";
@@ -46,51 +47,23 @@ function disableAnswers() {
 function startGame() {
 
     timer = 60;
-    document.getElementById("game-over").style = "display: none";
-
-    document.getElementById("start-reset").style = "pointer-events:none";
     //enable while playing
     enableAnswers();
-
-
-
-
-
-    document.getElementById("start-reset").innerText = "Playing...";
-
-    // document.getElementById("question").innerText = questionroblem();
-    //need to feed randomized numbers with questionMath
-
-    
+    //invoke code that randomizes question and answer boxes
     randomBox();
 
-
-
+    //dom changes while playing
+    document.getElementById("game-over").style = "display: none";
+    document.getElementById("start-reset").style = "pointer-events:none";
+    document.getElementById("start-reset").innerText = "Playing...";
     document.getElementById("time-remaining").style = "display: block";
 
-
-
-    // setTimeout(function() {
-    //     for(i=60; i >= 0; i--) {
-    //         document.getElementById("time-remaining-value").innerText=i;
-    //         console.log(i);
-
-    //     }
-    // })
-
-
     timeCounter();
-    //  function goDown() {
-    //      questionMath() = test;
-    //      return test;
-    //  }
-    //  function goDown2() {
-    //     return goDown();
-    // }
     console.log(correctMatch)
-    // return this.test = correctMatch;
 
 }
+
+//these functions can be shortened -- lots of repetitive code
 function correctCheck1() {
     if (document.getElementById("box1").innerText == correctMatch) {
         console.log("correct");
@@ -152,24 +125,25 @@ function endTime() {
 
 function startTime() {
     document.getElementById("time-remaining-value").innerText = timer;
-    // console.log(i);
     timer--
 }
-// var correctMatch = questionMath();
 
+//randomize answer boxes and question
 function randomBox() {
 
     function questionMath() {
+        //don't need these variables anymore
         var randomNum1 = randomNum();
         var randomNum2 = randomNum();
         mathStr = randomNum1 + ' X ' + randomNum2;
         document.getElementById("question").innerText = mathStr;
     
     
-    
+        //don't need this returned anymore
         return randomNum1 * randomNum2;
     }
     this.correctMatch = questionMath();
+
     arrayRandomizer = [correctMatch, randomNum() * randomNum(), randomNum() * randomNum(), randomNum() * randomNum()]
     shuffle(arrayRandomizer);
     document.getElementById("box1").innerText = arrayRandomizer[0];
@@ -177,6 +151,7 @@ function randomBox() {
     document.getElementById("box3").innerText = arrayRandomizer[2];
     document.getElementById("box4").innerText = arrayRandomizer[3];
 
+    //returned so we can check it in dom comparison
     return correctMatch;
 }
 
@@ -200,23 +175,8 @@ function randomBox() {
         return array;
     }
 
-
-
-
-// function randomNum() {
-//     var ranNum1 = Math.floor(Math.random() * 10) + 1;
-//     var ranNum2 = Math.floor(Math.random() * 10) + 1;
-
-//     var question = ranNum1 + " x " + ranNum2;
-//     var answer = ranNum1 * ranNum2;
-
-//     answerQuestion = [question,answer];
-//    return answerQuestion;
-// }
-
+//return a number between 1-10
 function randomNum() {
-
-
     return Math.floor(Math.random() * 10) + 1;
 }
 
