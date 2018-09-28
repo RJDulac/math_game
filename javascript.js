@@ -22,8 +22,8 @@
 
 
 var timer = 60;
-var score = 0;
 
+var score = 0;
 
 disableAnswers();
 
@@ -59,6 +59,7 @@ function startGame() {
     document.getElementById("time-remaining").style = "display: block";
 
     timeCounter();
+    resetScore();
     console.log(correctMatch)
 
 }
@@ -114,6 +115,7 @@ function timeCounter() {
 }
 
 function endTime() {
+
     if (timer === 0) {
         document.getElementById("game-over").style = "display: block";
         document.getElementById("start-reset").style = "pointer-events:auto";
@@ -121,6 +123,12 @@ function endTime() {
         console.log("hit 0");
         disableAnswers();
     }
+    
+}
+
+function resetScore() {
+    score = 0;
+    document.getElementById("score-value").innerText = score;
 }
 
 function startTime() {
